@@ -8,6 +8,11 @@
 int Block::width() const
 {
     // Your code here!
+    if(data.size() == 0) {
+        return 0;
+    }
+
+    return data[0].size();
 }
 
 /* Returns the width, in pixels
@@ -16,6 +21,7 @@ int Block::width() const
 int Block::height() const
 {
     // Your code here!
+    return data.size();
 }
 
 /* Given an image whose size is large enough, place
@@ -26,6 +32,17 @@ int Block::height() const
 void Block::render(PNG &im, int column, int row) const
 {
     // Your code here!
+    if (!(column>=0 && (unsigned)column<im.width())) {
+        return;
+    }
+
+    for (int col = column; col< (column + width() > im.width())? 
+        im.width() : (column + width()); col++){
+    for (int row = 0; row<im.height(); row++){
+      *(im.getPixel(col, row)) = data[row][col - column];
+    }
+  }
+    
 }
 
 /* create a block of pixels whose color values are the same as the
