@@ -46,6 +46,8 @@ int main()
    TestFlipVert();
    TestFlipHoriz();
 
+   //todo: uncomment these later
+
     
    return 0;
 }
