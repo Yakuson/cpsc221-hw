@@ -51,8 +51,14 @@ void Block::render(PNG &im, int column, int row) const
  */
 void Block::build(PNG &im, int column, int row, int width, int height)
 {
-
     // Your code here!
+    data.resize(im.height());
+    for (int y = row; y < (row + height); y++) {
+        data[y].resize(width);
+        for (int x = column; x < (column + width); x++) {
+            data[y][x - column] = *(im.getPixel(x, y));
+        }
+    }
 
 }
 
